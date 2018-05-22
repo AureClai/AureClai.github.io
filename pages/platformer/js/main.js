@@ -8,6 +8,8 @@ function Hero(game, x, y){
   this.animations.add('run', [1,2], 8, true);
   this.animations.add('jump', [3]);
   this.animations.add('fall', [4]);
+  this.animations.add('die', [5,6,5,6,5,6,5,5,5,5,5,5],12)
+  this.isDying = false;
 }
 
 // inherit from Phaser.sprite
@@ -41,6 +43,13 @@ Hero.prototype.bounce = function (){
   this.body.velocity.y = -BOUNCE_SPEED;
 };
 
+Hero.prototype.takeDamage = function(){
+  this.body.enable = false;
+  this.animations.play('jump').onComplete.addOnce(function () {
+      this.game.state.restart(true, false, {level: this.level});
+    }, this);
+}
+
 Hero.prototype._getAnimationName = function(){
   let name = 'stop';
 
@@ -60,10 +69,12 @@ Hero.prototype._getAnimationName = function(){
 }
 
 Hero.prototype.update = function(){
-  // update sprite animation, it it needs changing
-  let animationName = this._getAnimationName();
-  if (this.animations.name !== animationName) {
-    this.animations.play(animationName);
+  if (!this.isDying){
+    // update sprite animation, it it needs changing
+    let animationName = this._getAnimationName();
+    if (this.animations.name !== animationName) {
+      this.animations.play(animationName);
+    }
   }
 };
 
@@ -163,6 +174,8 @@ PlayState.preload = function(){
   this.game.load.audio('sfx:key', 'audio/key.wav');
   this.game.load.audio('sfx:door', 'audio/door.wav');
   this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
+
+  this.game.load.spritesheet('decor', 'images/decor.png', 42,42);
 };
 
 PlayState.create = function(){
@@ -203,6 +216,8 @@ PlayState._loadLevel = function (data){
   data.coins.forEach(this._spawnCoin, this);
   this._spawnDoor(data.door.x, data.door.y);
   this._spawnKey(data.key.x, data.key.y);
+  // Spawn decor
+  data.decoration.forEach(this._spawnDecor, this);
   // enable gravity
   const GRAVITY = 1200;
   this.game.physics.arcade.gravity.y = GRAVITY;
@@ -255,6 +270,10 @@ PlayState._spawnCoin = function(coin) {
   sprite.animations.play('rotate');
   this.game.physics.enable(sprite);
   sprite.body.allowGravity = false;
+}
+
+PlayState._spawnDecor = function(decor){
+  let sprite = this.bgDecoration.create(decor.x, decor.y, 'decor', decor.frame);
 }
 
 PlayState._spawnEnnemyWall = function(x, y, side){
@@ -324,8 +343,9 @@ PlayState._onHeroVsEnnemy = function( hero, ennemy){
     ennemy.die();
     this.sfx.stomp.play();
   } else {
-  this.sfx.stomp.play();
-  this.game.state.restart(true, false, {level: this.level});
+    this.sfx.stomp.play();
+    hero.takeDamage();
+    //this.game.state.restart(true, false, {level: this.level});
   }
 }
 
