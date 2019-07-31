@@ -645,7 +645,7 @@ buttonPause.onclick = (e) => {
 
     } else {
         running = false;
-        buttonPause.firstChild.data = "Launch"
+        buttonPause.firstChild.data = "Lancer"
         timer.stop();
     }
 }
@@ -658,7 +658,7 @@ buttonReset.onclick = (e) => {
         axis = null;
     } else {
         running = false;
-        buttonPause.firstChild.data = "Launch";
+        buttonPause.firstChild.data = "Lancer";
         isInitialized = false;
         axis = null;
         timer.stop();
