@@ -494,9 +494,9 @@ function initialisation() {
 
     // TODO: REMOVE THIS
     carsOnExit = [];
-    for (let i = 0; i < 3; i++) {
+    /*for (let i = 0; i < 3; i++) {
         carsOnExit.push(new Car(i * ecartInitial, 'onExit'));
-    }
+    }*/
     // TODO: REMOVE THIS
     carsOnEntry = [];/*
     for (let i = 0; i < 4; i++) {
