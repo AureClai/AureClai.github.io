@@ -1,0 +1,21 @@
+ListeData={[],0,[],0,[],[],[],{},0,0,0,0};
+    % 1�re variable : Position des entit�s
+    % 2nde variable : Pas de temps actuel
+    % 3i�m variable : position des entit�s sur la voie d'entr�e
+    % 4i�m variable : nombre d'usager devant sortir
+    % 5i�m variable : Position des entit�s �tant sorties du circuit
+    % 6i�me variable : les figures
+        % figure 1 : les trajectoires
+        % figure 2 : rien
+    % 7i�me variable : Matrice(date de mesure,3)
+        % premi�re colonne : date
+        % deuxi�me colonne : CVC apr�s l'entr�e
+        % troisi�me colonne : CVC avant la sortie
+        % quatri�me colonne : CVC apr�s la sortie
+        % cinqui�me colonne : CVC avant l'entr�e
+    % 8i�me variable : Toutes les positions � tous les pas de temps mesur�s
+    % 9i�me variable : num�ro actuel de la derni�re entit�e pass�e par l'abscisse curviligne 0
+    % 10i�me variable : si l'utilisateur a cliqu� sur reset ou non (bool�en)
+    % 11i�me variable : date de la derni�re entr�e d'un usager sur la voie d'entr�e
+    % 12i�me variable : bool�en pour savoir si la file d'attente est remont�e trop loin
+    
