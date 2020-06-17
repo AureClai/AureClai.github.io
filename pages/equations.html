@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equations GitHub</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #container{
+            width: 50vw;
+            min-width: 600px;
+            margin: auto;
+        }
+
+        #equation{
+            width:95%;
+        }
+
+        #equation, #results {
+            border-color:gainsboro;
+            border-radius: 5px;
+            border-style: solid;
+        }
+
+        #results {
+            margin-top: 20px;
+            
+        }
+
+        #equation:active {
+            border-color: mediumturquoise;
+        }
+
+    </style>
+  <body>
+      <div id="container">
+        <h1>Latex equations on GitHub Markdown</h1>
+        <h4>Write an equation below</h4>
+        <input type="text" id="equation" onchange="equation_changed()">
+        <div id="results">
+            <h4>Result :</h4>
+            <p id="link"></p>
+            <span>Preview:</span>
+            <img id="image" src="" alt="">
+        </div>
+      </div>
+    
+  </body>
+
+  <script type="text/javascript">
+    const equation = document.getElementById("equation")
+    const link = document.getElementById("link")
+    const image = document.getElementById("image")
+    equation_changed = () =>  {
+        link.innerHTML = "![" + equation.value +"](https://render.githubusercontent.com/render/math?math=" + encodeURIComponent(equation.value)+")"
+        image.src = "https://render.githubusercontent.com/render/math?math=" + encodeURIComponent(equation.value)
+    }
+  </script>
+</html>
