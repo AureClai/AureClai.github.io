@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equations GitHub</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100%;
+        margin: 0%;
+      }
+
+      #equation {
+        width: 95%;
+      }
+
+      #equation,
+      #results {
+        border-color: gainsboro;
+        border-radius: 5px;
+        border-style: solid;
+      }
+
+      #results {
+        margin-top: 20px;
+      }
+
+      #equation:active {
+        border-color: mediumturquoise;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="w-screen mt-4 ml-4">
+      <div class="row">
+        <h1>C++ Class Generator</h1>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <form action="">
+            <h4>Main informations</h4>
+            <input
+              type="text"
+              class="form-control mb-3"
+              placeholder="Class Name"
+              aria-label="class-name"
+              aria-describedby="basic-addon1"
+              id="class-name"
+            />
+            <input
+              type="text"
+              class="form-control mb-3"
+              placeholder="Parent Name (optionnal)"
+              aria-label="parent-name"
+              aria-describedby="basic-addon1"
+              id="parent-name"
+            />
+            <h4>Header options</h4>
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="single-inclusion-check"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                >Header single inclusion</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="constructor-check"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                >Add a constructor</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="destructor-check"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                >Add a destructor</label
+              >
+            </div>
+            <h4 class="mt-3">Documentation</h4>
+            <input
+              type="text"
+              class="form-control mb-3"
+              placeholder="Author"
+              aria-label="author"
+              aria-describedby="basic-addon1"
+              id="author"
+            />
+            <input
+              type="text"
+              class="form-control mb-3"
+              placeholder="Date"
+              aria-label="date"
+              aria-describedby="basic-addon1"
+              id="date"
+            />
+            <textarea
+              class="form-control"
+              rows="10"
+              placeholder="Class Role"
+              id="class-role"
+            ></textarea>
+            <button class="btn btn-primary mt-3" onclick="generate()">
+              <span>Generate</span>
+            </button>
+          </form>
+        </div>
+        <div class="col-6">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Header File</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Cpp Implementation</a>
+            </li>
+          </ul>
+          <pre class="pre-crollable">
+          <code id="resulting-code">
+/*<br>&#09;Author: Pythalex<br>&#09;Date: 27/08/2020<br>&#09;This is a test for the class role<br>*/<br>#ifndef FILE_H
+#define FILE_H
+class Example {
+&#09;public:
+&#09;Example()
+&#09;~Example()
+}
+#endif
+            </code></pre>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+  <script type="text/javascript">
+    const classNameInput = document.getElementById("class-name");
+    const parentNameInput = document.getElementById("parent-name");
+    const codeArea = document.getElementById("resulting-code");
+
+    generate = () => {
+      result = "<br>class " + classNameInput.value;
+      if (parentNameInput.value !== "") {
+        result += " : " + parentNameInput.value;
+      }
+      result += " {<br>" + "<br>};";
+      codeArea.innerHTML = result;
+    };
+  </script>
+</html>
