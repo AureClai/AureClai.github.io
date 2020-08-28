@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Equations GitHub</title>
+    <title>C++ Class Generator</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,24 +16,7 @@
         width: 100%;
         margin: 0%;
       }
-
-      #equation {
-        width: 95%;
-      }
-
-      #equation,
-      #results {
-        border-color: gainsboro;
-        border-radius: 5px;
-        border-style: solid;
-      }
-
-      #results {
-        margin-top: 20px;
-      }
-
-      #equation:active {
-        border-color: mediumturquoise;
+      #right-pane {
       }
     </style>
   </head>
@@ -41,12 +24,12 @@
   <body>
     <div class="w-screen mt-4 ml-4">
       <div class="row">
-        <h1>C++ Class Generator</h1>
+        <h1>C++ Class Generator v1.0</h1>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6" id="right-pane">
           <form action="">
-            <h4>Main informations</h4>
+            <h4>Main information</h4>
             <input
               type="text"
               class="form-control mb-3"
@@ -125,22 +108,26 @@
         <div class="col-6">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Header File</a>
+              <a
+                class="nav-link active"
+                href="#"
+                onclick="switchToHeaderContent()"
+                id="header-nav-link"
+                >Header File</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cpp Implementation</a>
+              <a
+                class="nav-link"
+                href="#"
+                onclick="switchToCppContent()"
+                id="cpp-nav-link"
+                >Cpp Implementation</a
+              >
             </li>
           </ul>
           <pre class="pre-crollable">
-          <code id="resulting-code">
-/*<br>&#09;Author: Pythalex<br>&#09;Date: 27/08/2020<br>&#09;This is a test for the class role<br>*/<br>#ifndef FILE_H
-#define FILE_H
-class Example {
-&#09;public:
-&#09;Example()
-&#09;~Example()
-}
-#endif
+          <code id="header_contenting-code">
             </code></pre>
         </div>
       </div>
@@ -165,15 +152,101 @@ class Example {
   <script type="text/javascript">
     const classNameInput = document.getElementById("class-name");
     const parentNameInput = document.getElementById("parent-name");
-    const codeArea = document.getElementById("resulting-code");
+    const codeArea = document.getElementById("header_contenting-code");
+    const singleInclusionCheck = document.getElementById(
+      "single-inclusion-check"
+    );
+    const constructorCheck = document.getElementById("constructor-check");
+    const destructorCheck = document.getElementById("destructor-check");
+
+    // Doc
+    const authorInput = document.getElementById("author");
+    const dateInput = document.getElementById("date");
+    const classRoleInput = document.getElementById("class-role");
+
+    // Navlinks
+    const headerNavLink = document.getElementById("header-nav-link");
+    const cppNavLink = document.getElementById("cpp-nav-link");
+
+    //
+    var header_content = "";
+    var cpp_content = "";
 
     generate = () => {
-      result = "<br>class " + classNameInput.value;
-      if (parentNameInput.value !== "") {
-        result += " : " + parentNameInput.value;
+      header_content = "<br>";
+
+      if (
+        authorInput.value !== "" ||
+        dateInput.value !== "" ||
+        classRoleInput.value !== ""
+      ) {
+        header_content += "/*<br>";
+        if (authorInput !== "") {
+          header_content += "&#09;Author: " + authorInput.value + "<br><br>";
+        }
+
+        if (dateInput !== "") {
+          header_content += "&#09;Date: " + dateInput.value + "<br><br>";
+        }
+
+        if (classRoleInput !== "") {
+          var textArray = classRoleInput.value.split("\n");
+          textArray.forEach((element) => {
+            header_content += "&#09;" + element + "<br>";
+          });
+        }
+
+        header_content += "*/<br><br>";
       }
-      result += " {<br>" + "<br>};";
-      codeArea.innerHTML = result;
+
+      if (singleInclusionCheck.checked) {
+        header_content +=
+          "#ifndef " + classNameInput.value.toUpperCase() + "_H<br>";
+        header_content +=
+          "#define " + classNameInput.value.toUpperCase() + "_H<br>";
+      }
+      header_content += "<br>class " + classNameInput.value;
+      if (parentNameInput.value !== "") {
+        header_content += " : " + parentNameInput.value;
+      }
+      header_content += " {<br>";
+      if (constructorCheck.checked || destructorCheck.checked) {
+        header_content += "public:<br>";
+        if (constructorCheck.checked) {
+          header_content += "&#09;" + classNameInput.value + "();<br>";
+        }
+        if (destructorCheck.checked) {
+          header_content += "&#09;~" + classNameInput.value + "();<br>";
+        }
+      }
+      header_content += "};<br>";
+
+      if (singleInclusionCheck.checked) {
+        header_content += "<br>#endif";
+      }
+
+      // CPP part
+      cpp_content =
+        "<br>#include " + '"' + classNameInput.value + '.h"<br><br>';
+      if (constructorCheck.checked)
+        cpp_content +=
+          classNameInput.value + "::" + classNameInput.value + "(){};<br><br>";
+      if (destructorCheck.checked)
+        cpp_content +=
+          classNameInput.value + "::~" + classNameInput.value + "(){};<br><br>";
+      switchToHeaderContent();
+    };
+
+    switchToHeaderContent = () => {
+      codeArea.innerHTML = header_content;
+      cppNavLink.classList.remove("active");
+      headerNavLink.classList.add("active");
+    };
+
+    switchToCppContent = () => {
+      codeArea.innerHTML = cpp_content;
+      headerNavLink.classList.remove("active");
+      cppNavLink.classList.add("active");
     };
   </script>
 </html>
