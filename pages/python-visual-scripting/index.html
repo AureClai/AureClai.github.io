@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Visual Scripting for Python</title>
+  </head>
+
+  <body>
+    <div class="pytha-elem console" id="my-console" style="top: 423px; left: 1009px">
+        <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+        <div class="header">
+          <div class="left"><div class="ico-python"></div></div>
+          <div class="center">
+            <div class="elem-name">Console</div>
+          </div>
+          <div class="right" id="button-run">
+              <button>
+                Run Script
+              </button>
+          </div>
+        </div>
+        <div class="console-content">
+          <div class="console-inner" id="cons-in">
+          </div>
+        </div>
+        </div>
+    <div class="pytha-elem function" id="my-elem3" style="top: 120px; left: 63px">
+      <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+      <div class="header">
+        <div class="left"><div class="ico-start"></div></div>
+        <div class="center">
+          <div class="elem-name">Start</div>
+        </div>
+        <div class="right"></div>
+      </div>
+      <div class="pytha-elem-content">
+        <div class="inputs">
+          <div class="input-pin">
+          </div>
+        </div>
+        <div class="outputs">
+            <div class="output-pin">
+                <div class="pin-execute" id="my-pin3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20px"
+                      height="20px"
+                    >
+                      <path
+                        d="M0 0 L 16 8 0 16 Z"
+                        fill="#fff"
+                        stroke="none"
+                        stroke-width="3"
+                      />
+                    </svg>
+                  </div>
+            </div>
+           
+        </div>
+      </div>
+    </div>
+    <div class="pytha-elem function" id="my-elem" style="top: 313px; left: 344px">
+      <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+      <div class="header">
+        <div class="left"><div class="ico-function"></div></div>
+        <div class="center">
+          <div class="elem-name">Today</div>
+          <div class="elem-description">Class method @ datetime.date</div>
+        </div>
+        <div class="right"></div>
+      </div>
+      <div class="pytha-elem-content">
+        <div class="inputs"></div>
+        <div class="outputs">
+          <div class="output-pin">
+            <div class="pin-name">Value</div>
+            <div class="pin-classic-connected" id="my-pin"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pytha-elem function" id="my-elem2" style="top: 126px; left: 764px">
+      <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+      <div class="header">
+        <div class="left"><div class="ico"></div></div>
+        <div class="center">
+          <div class="elem-name">Print</div>
+        </div>
+        <div class="right"></div>
+      </div>
+      <div class="pytha-elem-content">
+        <div class="inputs">
+        <div class="input-pin">
+            <div class="pin-execute" id="my-pin4">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20px"
+                    height="20px"
+                >
+                    <path
+                    d="M0 0 L 16 8 0 16 Z"
+                    fill="#fff"
+                    stroke="none"
+                    stroke-width="3"
+                    />
+                </svg>
+                </div>
+        </div>
+          <div class="input-pin">
+            <div class="pin-classic" id=""></div>
+            <div class="pin-user-input">
+                <input type="text" name="" id="my-input-text" class="pin-user-input" value="Today's date is:">
+            </div>
+          </div>
+          <div class="input-pin">
+            <div class="pin-classic-connected" id="my-pin2"></div>
+            <div class="pin-name">Args 1</div>
+          </div>
+          <div class="input-pin">
+            <div class="pin-add">+</div>
+            <div class="pin-name">Add pin</div>
+          </div>
+        </div>
+        <div class="outputs">
+            <div class="output-pin">
+                <div class="pin-execute">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20px"
+                        height="20px"
+                    >
+                        <path
+                        d="M0 0 L 16 8 0 16 Z"
+                        fill="#fff"
+                        stroke="none"
+                        stroke-width="3"
+                        />
+                    </svg>
+                    </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pytha-path" style="top: 53px; left: 193px" id="my-svg">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="213px"
+        height="200px"
+        top="0px"
+      >
+        <path
+          d="M0 0 c 100 0 113 200 213 200"
+          fill="none"
+          stroke="#fff"
+          stroke-width="3"
+        />
+      </svg>
+    </div>
+    <div class="pytha-path" style="top: 53px; left: 193px" id="my-svg2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="213px"
+          height="200px"
+          top="0px"
+        >
+          <path
+            d="M0 0 c 100 0 113 200 213 200"
+            fill="none"
+            stroke="#fff"
+            stroke-width="3"
+          />
+        </svg>
+      </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

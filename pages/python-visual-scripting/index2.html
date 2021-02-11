@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pythagore : Visual Scripting for Python</title>
+  </head>
+
+  <body>
+    <div class="pytha-elem" id="my-elem" style="top:10px;left:10px">
+      <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+      <div class="header">
+        <div class="left"><div class="ico"></div></div>
+        <div class="center">
+          <div class="elem-name">My function example</div>
+          <div class="elem-description">From the class xx</div>
+        </div>
+        <div class="right"></div>
+      </div>
+      <div class="pytha-elem-content">
+        <div class="inputs">
+          <div class="input-pin">
+            <div class="pin-float" ></div>
+            <div class="pin-name" >Input float</div>
+          </div>
+          <div class="input-pin">
+            <div class="pin-integer"></div>
+            <div class="pin-name">Input integer</div>
+          </div>
+          <div class="input-pin">
+            <div class="pin-object"></div>
+            <div class="pin-name">Input object</div>
+          </div>
+        </div>
+        <div class="outputs">
+            <div class="output-pin">
+                <div class="pin-name" >Output Float</div>
+                <div class="pin-float-connected" id="my-pin"></div>
+            </div>
+            <div class="output-pin">
+                <div class="pin-name">Output Integer</div>
+                <div class="pin-float"></div>
+            </div>
+            <div class="output-pin">
+                <div class="pin-name">Output object</div>
+                <div class="pin-float"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pytha-elem" id="my-elem2" style="top:10px;left:400px">
+        <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+        <div class="header">
+          <div class="left"><div class="ico"></div></div>
+          <div class="center">
+            <div class="elem-name">My function example</div>
+            <div class="elem-description">From the class xx</div>
+          </div>
+          <div class="right"></div>
+        </div>
+        <div class="pytha-elem-content">
+          <div class="inputs">
+            <div class="input-pin">
+              <div class="pin-float"></div>
+              <div class="pin-name">Input float</div>
+            </div>
+            <div class="input-pin" >
+              <div class="pin-integer-connected" id="my-pin2"></div>
+              <div class="pin-name">Input integer</div>
+            </div>
+            <div class="input-pin">
+              <div class="pin-object"></div>
+              <div class="pin-name">Input object</div>
+            </div>
+          </div>
+          <div class="outputs">
+              <div class="output-pin">
+                  <div class="pin-name">Output Float</div>
+                  <div class="pin-float"></div>
+              </div>
+              <div class="output-pin">
+                  <div class="pin-name">Output Integer</div>
+                  <div class="pin-float"></div>
+              </div>
+              <div class="output-pin">
+                  <div class="pin-name">Output object</div>
+                  <div class="pin-float"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="pytha-elem" id="my-elem2" style="top:10px;left:400px">
+        <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+        <div class="header">
+          <div class="left"><div class="ico"></div></div>
+          <div class="center">
+            <div class="elem-name">My function example</div>
+            <div class="elem-description">From the class xx</div>
+          </div>
+          <div class="right"></div>
+        </div>
+        <div class="pytha-elem-content">
+          <div class="inputs">
+            <div class="input-pin">
+              <div class="pin-float"></div>
+              <div class="pin-name">Input float</div>
+            </div>
+            <div class="input-pin" >
+              <div class="pin-integer-connected" id="my-pin2"></div>
+              <div class="pin-name">Input integer</div>
+            </div>
+            <div class="input-pin">
+              <div class="pin-object"></div>
+              <div class="pin-name">Input object</div>
+            </div>
+          </div>
+          <div class="outputs">
+              <div class="output-pin">
+                  <div class="pin-name">Output Float</div>
+                  <div class="pin-float"></div>
+              </div>
+              <div class="output-pin">
+                  <div class="pin-name">Output Integer</div>
+                  <div class="pin-float"></div>
+              </div>
+              <div class="output-pin">
+                  <div class="pin-name">Output object</div>
+                  <div class="pin-float"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class='pytha-path' style='top:53px;left:193px' id="my-svg">
+        <svg xmlns="http://www.w3.org/2000/svg" width='213px' height='200px' top='0px'>
+            <path d="M0 0 c 100 0 113 200 213 200" fill="none" stroke="#fff" stroke-width="3"/>
+          </svg>
+      </div>
+      
+    <script src="app.js"></script>
+  </body>
+</html>
