@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Epidemy Simulation</title>
-    <script src="wasm_exec.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/golang/go@go1.15.2/misc/wasm/wasm_exec.js"></script>
     <script>
       const go = new Go();
       WebAssembly.instantiateStreaming(
-        fetch("https://github.com/AureClai/epidemie-WASM/blob/main/assets/epidemie.wasm"),
+        fetch("epidemie.wasm"),
         go.importObject
       ).then((result) => {
         go.run(result.instance);
