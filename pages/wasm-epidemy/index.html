@@ -9,7 +9,7 @@
     <script>
       const go = new Go();
       WebAssembly.instantiateStreaming(
-        fetch("epidemie.wasm"),
+        fetch("https://github.com/AureClai/epidemie-WASM/blob/main/assets/epidemie.wasm"),
         go.importObject
       ).then((result) => {
         go.run(result.instance);
@@ -17,7 +17,7 @@
     </script>
   </head>
   <body>
-    <a href="https://github.com/AureClai/epidemie-WASM">Download Source Code on Github</a>
+    <a href="https://github.com/AureClai/epidemie-WASM/">Download Source Code on Github</a>
     <br>
     <!-- <canvas id="epidemie_cv" width="600" height="600"></canvas> -->
   </body>
