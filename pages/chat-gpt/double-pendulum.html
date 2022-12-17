@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Double Pendulum Animation</title>
+  </head>
+  <body>
+    <h1>Made with ChatGPT</h1>
+    <h2>Double pendulum animation</h2>
+    <canvas id="pendulum" width="500" height="500"></canvas>
+    <script>
+      // Get canvas and context
+      var canvas = document.getElementById('pendulum');
+      var ctx = canvas.getContext('2d');
+
+      // Set some initial values
+      var l1 = 100; // Length of first pendulum
+      var l2 = 100; // Length of second pendulum
+      var m1 = 10; // Mass of first pendulum
+      var m2 = 10; // Mass of second pendulum
+      var a1 = Math.PI / 2; // Initial angle of first pendulum (90 degrees)
+      var a2 = Math.PI / 2; // Initial angle of second pendulum (90 degrees)
+      var a1_v = 0; // Initial angular velocity of first pendulum
+      var a2_v = 0; // Initial angular velocity of second pendulum
+      var g = 9.81; // Gravitational acceleration
+      var dt = 0.1; // Time step
+
+      // Set up the canvas
+      ctx.translate(250, 250); // Translate the origin to the center of the canvas
+      ctx.lineWidth = 2; // Set the line width for the pendulum arms
+
+      // Animate the double pendulum
+      setInterval(function () {
+        // Calculate the acceleration of each pendulum using the equations of motion
+        var num1 = -g * (2 * m1 + m2) * Math.sin(a1);
+        var num2 = -m2 * g * Math.sin(a1 - 2 * a2);
+        var num3 = -2 * Math.sin(a1 - a2) * m2;
+        var num4 = a2_v * a2_v * l2 + a1_v * a1_v * l1 * Math.cos(a1 - a2);
+        var den = l1 * (2 * m1 + m2 - m2 * Math.cos(2 * a1 - 2 * a2));
+        var a1_a = (num1 + num2 + num3 * num4) / den;
+
+        num1 = 2 * Math.sin(a1 - a2);
+        num2 = a1_v * a1_v * l1 * (m1 + m2);
+        num3 = g * (m1 + m2) * Math.cos(a1);
+        num4 = a2_v * a2_v * l2 * m2 * Math.cos(a1 - a2);
+        den = l2 * (2 * m1 + m2 - m2 * Math.cos(2 * a1 - 2 * a2));
+        var a2_a = (num1 * (num2 + num3 + num4)) / den;
+
+        // Update the angular velocities using the calculated accelerations
+        a1_v += a1_a * dt;
+        a2_v += a2_a * dt;
+
+        // Update the angles using the updated angular velocities
+        // Update the angles using the updated angular velocities
+        a1 += a1_v * dt;
+        a2 += a2_v * dt;
+
+        // Clear the canvas
+        ctx.clearRect(-250, -250, 500, 500);
+
+        // Draw the first pendulum arm
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(l1 * Math.sin(a1), l1 * Math.cos(a1));
+        ctx.stroke();
+
+        // Draw the second pendulum arm
+        ctx.beginPath();
+        ctx.moveTo(l1 * Math.sin(a1), l1 * Math.cos(a1));
+        ctx.lineTo(
+          l1 * Math.sin(a1) + l2 * Math.sin(a2),
+          l1 * Math.cos(a1) + l2 * Math.cos(a2)
+        );
+        ctx.stroke();
+
+        // Draw the first pendulum bob
+        ctx.beginPath();
+        ctx.arc(0, 0, 10, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Draw the second pendulum bob
+        ctx.beginPath();
+        ctx.arc(
+          l1 * Math.sin(a1) + l2 * Math.sin(a2),
+          l1 * Math.cos(a1) + l2 * Math.cos(a2),
+          10,
+          0,
+          2 * Math.PI
+        );
+        ctx.fill();
+      }, 10); // Update the animation at a rate of 100 times per second
+    </script>
+  </body>
+</html>
