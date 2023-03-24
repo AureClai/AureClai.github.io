@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Idle Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, p, button {
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .upgrades {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upgrade {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .my-img {
+          margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="my-img" src="capture.png"/>
+        <h1>Simple Idle Game</h1>
+        <p>Currency: <span id="currency">0</span></p>
+        <button onclick="incrementCurrency()">Click me</button>
+        <h2>Upgrades</h2>
+        <div class="upgrades">
+            <div class="upgrade">
+                <p>Auto Clicker: <span id="autoClickerCount">0</span></p>
+                <button onclick="buyAutoClicker()">Cost: <span id="autoClickerCost">10</span></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currency = 0;
+        let autoClickerCount = 0;
+        let autoClickerCost = 10;
+
+        function incrementCurrency() {
+            currency++;
+            updateDisplay();
+        }
+
+        function buyAutoClicker() {
+            if (currency >= autoClickerCost) {
+                currency -= autoClickerCost;
+                autoClickerCount++;
+                autoClickerCost = Math.floor(autoClickerCost * 1.1);
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('currency').innerText = currency;
+            document.getElementById('autoClickerCount').innerText = autoClickerCount;
+            document.getElementById('autoClickerCost').innerText = autoClickerCost;
+        }
+
+        setInterval(() => {
+            currency += autoClickerCount;
+            updateDisplay();
+        }, 1000);
+    </script>
+</body>
+</html>
